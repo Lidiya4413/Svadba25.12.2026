@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Свадьба Сергея и Лидии</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marck+Script&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf6ef;
+    --soft:#f3ece1;
+    --ink:#4a3f35;
+    --gold:#b98d4f;
+    --gold-light:#d9bc8b;
+    --white:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Jost',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(217,188,139,.25), transparent 45%),
+      radial-gradient(circle at 80% 80%, rgba(185,141,79,.18), transparent 45%),
+      linear-gradient(180deg,#faf6ef 0%,#f1e8da 100%);
+    padding:60px 24px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before,.hero::after{
+    content:'';
+    position:absolute;
+    width:340px;height:340px;
+    border:1px solid rgba(185,141,79,.35);
+    border-radius:50%;
+  }
+  .hero::before{top:-140px;left:-140px;}
+  .hero::after{bottom:-140px;right:-140px;}
+  .ornament{
+    font-size:22px;
+    color:var(--gold);
+    letter-spacing:8px;
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(34px,6vw,58px);
+    letter-spacing:2px;
+    color:var(--ink);
+  }
+  .script{
+    font-family:'Marck Script',cursive;
+    font-size:clamp(30px,5.5vw,52px);
+    color:var(--gold);
+    display:block;
+    margin:6px 0 10px;
+  }
+  .hero .date{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(20px,3vw,28px);
+    letter-spacing:6px;
+    margin-top:34px;
+    color:var(--ink);
+  }
+  .hero .sub{
+    margin-top:14px;
+    font-weight:300;
+    letter-spacing:1.5px;
+    font-size:15px;
+    color:#8a7a68;
+  }
+  .divider{
+    width:70px;height:1px;
+    background:var(--gold-light);
+    margin:22px auto;
+  }
+  section{
+    max-width:720px;
+    margin:0 auto;
+    padding:70px 26px;
+    text-align:center;
+  }
+  h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(26px,4vw,36px);
+    letter-spacing:2px;
+    margin-bottom:8px;
+  }
+  .section-cap{
+    font-size:12px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+  .lead{
+    font-weight:300;
+    font-size:17px;
+    max-width:520px;
+    margin:18px auto 0;
+    color:#5c5147;
+  }
+  /* Timeline */
+  .timeline{margin-top:44px;position:relative;}
+  .timeline::before{
+    content:'';
+    position:absolute;
+    left:50%;top:0;bottom:0;
+    width:1px;
+    background:linear-gradient(180deg,transparent,var(--gold-light),transparent);
+    transform:translateX(-50%);
+  }
+  .t-item{
+    position:relative;
+    width:50%;
+    padding:22px 44px;
+    box-sizing:border-box;
+  }
+  .t-item:nth-child(odd){left:0;text-align:right;}
+  .t-item:nth-child(even){left:50%;text-align:left;}
+  .t-item::after{
+    content:'';
+    position:absolute;
+    top:34px;
+    width:9px;height:9px;
+    background:var(--gold);
+    border-radius:50%;
+    box-shadow:0 0 0 5px var(--cream), 0 0 0 6px var(--gold-light);
+  }
+  .t-item:nth-child(odd)::after{right:-5px;}
+  .t-item:nth-child(even)::after{left:-4px;}
+  .t-time{
+    font-family:'Cormorant Garamond',serif;
+    font-size:24px;
+    color:var(--gold);
+    letter-spacing:2px;
+  }
+  .t-title{
+    font-size:16px;
+    letter-spacing:1px;
+    margin-top:2px;
+  }
+  .t-desc{
+    font-size:14px;
+    font-weight:300;
+    color:#8a7a68;
+    margin-top:4px;
+  }
+  @media(max-width:560px){
+    .timeline::before{left:9px;}
+    .t-item{width:100%;text-align:left !important;padding:18px 6px 18px 38px;left:0 !important;}
+    .t-item:nth-child(odd)::after{right:auto;left:5px;}
+    .t-item:nth-child(even)::after{left:5px;}
+  }
+  /* Places */
+  .places{
+    display:flex;
+    flex-wrap:wrap;
+    gap:26px;
+    justify-content:center;
+    margin-top:40px;
+  }
+  .card{
+    background:var(--white);
+    border:1px solid #eadfcc;
+    border-radius:14px;
+    padding:34px 30px;
+    width:290px;
+    box-shadow:0 10px 30px rgba(90,70,40,.08);
+  }
+  .card .ico{
+    font-size:26px;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .card h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:500;
+    letter-spacing:1px;
+  }
+  .card p{
+    font-size:14px;
+    font-weight:300;
+    margin-top:8px;
+    color:#5c5147;
+  }
+  .card .addr{
+    margin-top:12px;
+    font-size:15px;
+    letter-spacing:.5px;
+    color:var(--ink);
+  }
+  .card a{
+    display:inline-block;
+    margin-top:14px;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold);
+    text-decoration:none;
+    border-bottom:1px solid var(--gold-light);
+    padding-bottom:2px;
+  }
+  .note{
+    margin-top:38px;
+    font-weight:300;
+    font-size:15px;
+    color:#8a7a68;
+    font-style:italic;
+  }
+  /* Final */
+  .final{
+    background:
+      radial-gradient(circle at 50% 0%, rgba(217,188,139,.22), transparent 60%),
+      linear-gradient(180deg,#f1e8da,#faf6ef);
+  }
+  .final .big{
+    font-family:'Marck Script',cursive;
+    font-size:clamp(30px,5vw,46px);
+    color:var(--gold);
+    margin-top:24px;
+  }
+  footer{
+    text-align:center;
+    padding:30px 20px 44px;
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#b0a293;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="ornament">✦ ✦ ✦</div>
+  <h1>Свадьба<span class="script">Сергея и Лидии</span></h1>
+  <div class="divider"></div>
+  <p class="date">25 . 12 . 2026</p>
+  <p class="sub">Будем счастливы разделить с вами этот тёплый зимний день</p>
+</header>
+
+<section>
+  <div class="section-cap">Программа дня</div>
+  <h2>Как пройдёт наш праздник</h2>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">15:30</div>
+      <div class="t-title">Сбор гостей</div>
+      <div class="t-desc">Встречаемся у ЗАГСа по адресу ул. Малыгина, 85</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">16:00</div>
+      <div class="t-title">Торжественная церемония</div>
+      <div class="t-desc">Самый важный момент — скажем друг другу «да»</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">17:00</div>
+      <div class="t-title">Лимузин</div>
+      <div class="t-desc">После церемонии лёгким дуновением ветерка на лимузине доедем до ресторана</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">18:00</div>
+      <div class="t-title">Ресторан</div>
+      <div class="t-desc">Праздничный ужин, тосты и танцы до самого вечера</div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--soft);border-radius:0;">
+  <div class="section-cap">Места торжества</div>
+  <h2>Где нас искать</h2>
+  <div class="places">
+    <div class="card">
+      <div class="ico">❧</div>
+      <h3>ЗАГС</h3>
+      <p>Здесь начнётся наша семейная история</p>
+      <p class="addr">ул. Малыгина, 85</p>
+      <a href="https://yandex.ru/maps/?text=ул.%20Малыгина,%2085" target="_blank">Показать на карте</a>
+    </div>
+    <div class="card">
+      <div class="ico">✧</div>
+      <h3>Ресторан</h3>
+      <p>А здесь продолжится — за ужином и танцами</p>
+      <p class="addr">ул. Пржевальского, 35</p>
+      <a href="https://yandex.ru/maps/?text=ул.%20Пржевальского,%2035" target="_blank">Показать на карте</a>
+    </div>
+  </div>
+  <p class="note">Нам будет особенно приятно видеть вас в светлых нарядах — чёрный цвет просим оставить для другого случая ♡</p>
+</section>
+
+<section class="final">
+  <div class="ornament">✦ ✦ ✦</div>
+  <h2>Ждём вас с нетерпением</h2>
+  <p class="lead">Самый дорогой подарок для нас — ваше присутствие. Приезжайте, обнимемся и отпразднуем вместе этот день.</p>
+  <p class="big">До встречи, 25 декабря 2026</p>
+</section>
+
+<footer>Сергей и Лидия · 25.12.2026</footer>
+
+</body>
+</html>
